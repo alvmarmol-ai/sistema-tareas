@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Gestor de Tareas</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <h1>📋 Mi Gestor de Tareas</h1>
+      
+      <!-- Formulario para agregar -->
+      <form id="form-tarea">
+        <input type="text" id="titulo" placeholder="Título de la tarea" required />
+        <input type="text" id="descripcion" placeholder="Descripción corta" required />
+        <select id="categoria">
+          <option value="Escuela">Escuela</option>
+          <option value="Hogar">Hogar</option>
+          <option value="Juego">Juego</option>
+        </select>
+        <select id="prioridad">
+          <option value="Baja">Baja</option>
+          <option value="Media">Media</option>
+          <option value="Alta">Alta</option>
+        </select>
+        <button type="submit">Agregar Tarea</button>
+      </form>
+
+      <!-- Filtros -->
+      <div class="filtros">
+        <input type="text" id="buscar" placeholder="🔍 Buscar por título..." />
+        <select id="filtro-estado">
+          <option value="todas">Todas</option>
+          <option value="pendientes">Pendientes</option>
+          <option value="completadas">Completadas</option>
+        </select>
+      </div>
+
+      <!-- Lista de tareas -->
+      <ul id="lista-tareas"></ul>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

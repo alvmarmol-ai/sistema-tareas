@@ -1,0 +1,267 @@
+/* --- Variables Gamer & Dark Mode --- */
+:root {
+  --bg-primary: #0f172a;       /* Azul/Gris ultra oscuro */
+  --card-bg: #1e293b;          /* Contenedor principal */
+  --item-bg: #0f172a;          /* Fondo de cada tarjeta de tarea */
+  --text-main: #f8fafc;        /* Texto principal claro */
+  --text-muted: #94a3b8;      /* Texto secundario opaco */
+  --primary-color: #8b5cf6;    /* Morado neón gamer */
+  --primary-hover: #7c3aed;
+  --accent-cyan: #06b6d4;       /* Cían brillante */
+  --border-radius: 12px;
+  
+  /* Colores Neón por Prioridad */
+  --baja-color: #10b981;       /* Verde neón */
+  --media-color: #f59e0b;      /* Naranja brillante */
+  --alta-color: #ef4444;       /* Rojo neón */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.15) 0px, transparent 50%);
+  color: var(--text-main);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+#app {
+  width: 100%;
+  max-width: 700px;
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.2);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+}
+
+/* --- Formulario de Tareas --- */
+#form-tarea {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  background: #0f172a;
+  padding: 1.25rem;
+  border-radius: var(--border-radius);
+  border: 1px solid #334155;
+}
+
+input, select, button {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background-color: #1e293b;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+input:focus, select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+}
+
+button[type="submit"] {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-cyan));
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+button[type="submit"]:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+}
+
+/* --- Sección de Filtros y Búsqueda --- */
+.filtros {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+/* --- Lista de Tareas --- */
+#lista-tareas {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sin-tareas {
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 1.5rem 0;
+}
+
+/* --- Tarjeta de Tarea Individual --- */
+.tarea-item {
+  background: var(--item-bg);
+  border-radius: var(--border-radius);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  border-left: 6px solid var(--text-muted);
+  border-top: 1px solid #334155;
+  border-right: 1px solid #334155;
+  border-bottom: 1px solid #334155;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarea-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Bordes por Prioridad (Efecto Glow Gamer) */
+.tarea-item.prioridad-baja { 
+  border-left-color: var(--baja-color); 
+  box-shadow: -4px 0 12px rgba(16, 185, 129, 0.2);
+}
+.tarea-item.prioridad-media { 
+  border-left-color: var(--media-color); 
+  box-shadow: -4px 0 12px rgba(245, 158, 11, 0.2);
+}
+.tarea-item.prioridad-alta { 
+  border-left-color: var(--alta-color); 
+  box-shadow: -4px 0 12px rgba(239, 68, 68, 0.2);
+}
+
+/* Estilo cuando está completada */
+.tarea-item.completada {
+  opacity: 0.45;
+  background-color: #090d16;
+}
+
+.tarea-item.completada h3 {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.tarea-info h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  color: #ffffff;
+}
+
+.tarea-info p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+/* Etiquetas (Badges) */
+.etiquetas {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.badge.categoria {
+  background: rgba(139, 92, 246, 0.2);
+  color: #c084fc;
+  border: 1px solid rgba(139, 92, 246, 0.4);
+}
+
+.prioridad-baja .badge.prioridad { 
+  background: rgba(16, 185, 129, 0.2); 
+  color: #34d399; 
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+.prioridad-media .badge.prioridad { 
+  background: rgba(245, 158, 11, 0.2); 
+  color: #fbbf24; 
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+.prioridad-alta .badge.prioridad { 
+  background: rgba(239, 68, 68, 0.2); 
+  color: #f87171; 
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+/* Botones de Acción */
+.tarea-acciones {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tarea-acciones button {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.75rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.btn-check { background: rgba(6, 182, 212, 0.2); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+.btn-editar { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+.btn-eliminar { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+.tarea-acciones button:hover {
+  filter: brightness(1.3);
+}
+
+/* --- Responsive --- */
+@media (min-width: 580px) {
+  #form-tarea {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  #form-tarea input[id="titulo"],
+  #form-tarea input[id="descripcion"],
+  #form-tarea button[type="submit"] {
+    grid-column: span 2;
+  }
+
+  .filtros {
+    flex-direction: row;
+  }
+
+  .filtros input {
+    flex: 2;
+  }
+
+  .filtros select {
+    flex: 1;
+  }
+
+  .tarea-item {
+    flex-direction: row;
+    align-items: center;
+  }
+}
